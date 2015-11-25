@@ -11,6 +11,7 @@ buildscript {
     classpath "com.bertramlabs.plugins:less-asset-pipeline:2.6.4"
     classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
     classpath "gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.4.1"
+    classpath "gradle.plugin.com.craigburke.gradle:jasmine-gradle:1.2.0"
   }
 }
 
@@ -19,6 +20,7 @@ apply plugin: "idea"
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: "asset-pipeline"
 apply plugin: "com.craigburke.bower-installer"
+apply plugin: "com.craigburke.jasmine"
 
 repositories {
   jcenter()
@@ -50,7 +52,7 @@ assets {
 
 bower {
   installBase = 'src/assets/bower/bower_components'
-  
+
   'angular'('^1.4.5')
   'angular-animate'('^1.4.5')
   'angular-sanitize'('^1.4.5')
@@ -61,4 +63,20 @@ bower {
   'jquery'('^2.1.4')
   'moment'('^2.10.3')
   'toastr'('^2.1.1')
+}
+
+node {
+  version = '4.2.2'
+}
+
+jasmine {
+    basePath = 'src/assets'
+    files = [
+        'bower/bower_components/jquery/jquery.js',
+        'bower/bower_components/angular/angular.js',
+        'bower/bower_components/**/*.js',
+        '**/*.module.js',
+        '**/!(*.spec).js',
+        '**/*.spec.js'
+    ]
 }
