@@ -33,7 +33,7 @@ dependencies {
 }
 
 assets {
-  minifyJs = false // TODO Fix this once we get angular-ap to work
+  minifyJs = true
   minifyCss = true
 
   enableSourceMaps = true
