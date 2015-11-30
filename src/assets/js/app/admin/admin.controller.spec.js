@@ -1,18 +1,18 @@
 /* jshint -W117, -W030 */
 describe('AdminController', function() {
-    var controller, $controller;
+    var controller;
 
-    beforeEach(module('app.admin'));
+    beforeEach(function() {
+        bard.appModule('app.admin');
+        bard.inject('$controller', '$log', '$rootScope');
+    });
 
-    beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
+    beforeEach(function () {
         controller = $controller('AdminController');
-        //$rootScope.$apply();
-    }));
+        $rootScope.$apply();
+    });
 
-    //TODO why verification failed ?
-    //bard.verifyNoOutstandingHttpRequests();
+    bard.verifyNoOutstandingHttpRequests();
 
     describe('Admin controller', function() {
         it('should be created successfully', function () {
@@ -25,8 +25,7 @@ describe('AdminController', function() {
             });
 
             it('should have logged "Activated"', function() {
-                //todo: how to inject $log ?
-                expect($log.info.logs).to.match(/Activated/);
+                expect($log.info.logs).toMatch(/Activated/);
             });
         });
     });
