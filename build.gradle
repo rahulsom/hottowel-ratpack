@@ -57,6 +57,8 @@ bower {
   'angular-animate'('^1.4.5')
   'angular-sanitize'('^1.4.5')
   'angular-ui-router'('^0.2.15')
+  'angular-mocks'('^1.4.5')
+  'bardjs'('^0.1.4')
   'bootstrap'('^3.3.5') { source 'less/**/*.less'; source 'js/**/*.js'; source 'dist/**/*' }
   'extras.angular.plus'('^0.9.2')
   'font-awesome'('^4.3.0')
