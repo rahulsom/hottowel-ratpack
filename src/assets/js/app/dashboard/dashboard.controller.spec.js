@@ -18,28 +18,28 @@ describe('DashboardController', function() {
 
     describe('Dashboard controller', function() {
         it('should be created successfully', function () {
-            expect(controller).to.be.defined;
+            expect(controller).toBeDefined();
         });
 
         describe('after activate', function() {
             it('should have title of Dashboard', function () {
-                expect(controller.title).to.equal('Dashboard');
+                expect(controller.title).toEqual('Dashboard');
             });
 
             it('should have logged "Activated"', function() {
-                expect($log.info.logs).to.match(/Activated/);
+                expect($log.info.logs).toMatch(/Activated/);
             });
 
             it('should have news', function () {
-                expect(controller.news).to.not.be.empty;
+                expect(controller.news.title).toBe('hottowelRatpack');
             });
 
             it('should have at least 1 person', function () {
-                expect(controller.people).to.have.length.above(0);
+                expect(controller.people.length).toBeGreaterThan(0);
             });
 
             it('should have people count of 5', function () {
-                expect(controller.people).to.have.length(7);
+                expect(controller.people.length).toBe(7);
             });
         });
     });

@@ -16,16 +16,16 @@ describe('ShellController', function() {
 
     describe('Shell controller', function() {
         it('should be created successfully', function () {
-            expect(controller).to.be.defined;
+            expect(controller).toBeDefined();
         });
 
         it('should show splash screen', function () {
-            expect($rootScope.showSplash).to.be.true;
+            expect($rootScope.showSplash).toBe(true);
         });
 
         it('should hide splash screen after timeout', function (done) {
             $timeout(function() {
-                expect($rootScope.showSplash).to.be.false;
+                expect($rootScope.showSplash).toBe(false);
                 done();
             }, 1000);
             $timeout.flush();
