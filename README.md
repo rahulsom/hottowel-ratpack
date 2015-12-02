@@ -4,7 +4,10 @@
 
 >*Opinionated Angular style guide for teams by [@john_papa](//twitter.com/john_papa)*
 
->More details about the styles and patterns used in this app can be found in my [Angular Style Guide](https://github.com/johnpapa/angularjs-styleguide) and my [Angular Patterns: Clean Code](http://jpapa.me/ngclean) course at [Pluralsight](http://pluralsight.com/training/Authors/Details/john-papa) and working in teams.
+>More details about the styles and patterns used in this app can be found in my
+[Angular Style Guide](https://github.com/johnpapa/angularjs-styleguide) and my [Angular Patterns:
+Clean Code](http://jpapa.me/ngclean) course at [Pluralsight](http://pluralsight.com/training/Authors/Details/john-papa)
+and working in teams.
 
 The significant difference is, we've replaced gulp with gradle, and express with ratpack. That's what people who love the JVM do.
 
@@ -18,7 +21,7 @@ The significant difference is, we've replaced gulp with gradle, and express with
  - Run code analysis using `gulp vet`. This runs jshint, jscs, and plato.
 
 ### Tests (TODO)
- - Run the unit tests using `gulp test` (via karma, mocha, sinon).
+ - Run the unit tests using `./gradlew karmaRun` (via karma, mocha, sinon).
 
 ### Running in dev mode
  - Run the project with `./gradlew -t run`
@@ -35,7 +38,6 @@ The significant difference is, we've replaced gulp with gradle, and express with
 HotTowel Angular starter project
 
 ### Structure
-The structure also contains a gulpfile.js and a server folder. The server is there just so we can serve the app using node. Feel free to use any server you wish.
 
     /src
       /assets
@@ -49,7 +51,8 @@ The structure also contains a gulpfile.js and a server folder. The server is the
         /styles
 
 ### Installing Packages
-When you first run this project, it will download all dependencies, however if there is a change to the dependencies and you want to force download, run `./gradlew clean assetClean bowerClean` to clean dependencies.
+When you first run this project, it will download all dependencies, however if there is a change to the dependencies
+and you want to force download, run `./gradlew clean assetClean bowerClean` to clean dependencies.
 
 ### The Modules
 The app has 4 feature modules and depends on a series of external modules and custom but cross-app modules
@@ -80,9 +83,11 @@ app --> [
 ```
 
 #### core Module
-Core modules are ones that are shared throughout the entire application and may be customized for the specific application. Example might be common data services.
+Core modules are ones that are shared throughout the entire application and may be customized for the specific
+application. Example might be common data services.
 
-This is an aggregator of modules that the application will need. The `core` module takes the blocks, common, and Angular sub-modules as dependencies.
+This is an aggregator of modules that the application will need. The `core` module takes the blocks, common, and
+Angular sub-modules as dependencies.
 
 #### blocks Modules
 Block modules are reusable blocks of code that can be used across projects simply by including them as dependencies.
@@ -98,13 +103,13 @@ It depends on the `blocks.logger` module, because the implementation logs the ex
 ##### blocks.router Module
 The `blocks.router` module contains a routing helper module that assists in adding routes to the $routeProvider.
 
-## Gulp Tasks
+## Gradle Tasks
 
 ### Task Listing
 
 - `./gradlew tasks --all`
 
-    Displays all of the available gulp tasks.
+    Displays all of the available gradle tasks.
 
 ### Code Analysis (TODO)
 
