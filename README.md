@@ -22,8 +22,7 @@ The significant difference is, we've replaced gulp with gradle, and express with
 
 ### Running in dev mode
  - Run the project with `./gradlew -t run`
-
- - opens it in a browser and updates the browser with any files changes.
+ - Opens it in a browser and updates the browser with any files changes.
 
 ### Building the project
  - Build the optimized project using `./gradlew shadowJar`
@@ -42,13 +41,15 @@ The structure also contains a gulpfile.js and a server folder. The server is the
       /assets
         /js
           /app
-          /content
+          /test-helpers
+          # application.js
+          # lib.js
+        /html
+        /images
+        /styles
 
 ### Installing Packages
-When you generate the project it should run these commands, but if you notice missing packages, run these again:
-
- - `npm install`
- - `bower install`
+When you first run this project, it will download all dependencies, however if there is a change to the dependencies and you want to force download, run `./gradlew clean assetClean bowerClean` to clean dependencies.
 
 ### The Modules
 The app has 4 feature modules and depends on a series of external modules and custom but cross-app modules
@@ -121,25 +122,13 @@ The `blocks.router` module contains a routing helper module that assists in addi
 
 ### Testing (TODO)
 
-- `gulp serve-specs`
+- `./gradlew karmaRun`
 
-    Serves and browses to the spec runner html page and runs the unit tests in it. Injects any changes on the fly and re runs the tests. Quick and easy view of tests as an alternative to terminal via `gulp test`.
+    Runs tests and prints result to command line
 
-- `gulp test`
+- `./gradlew karmaWatch`
 
-    Runs all unit tests using karma runner, mocha, chai and sinon with phantomjs. Depends on vet task, for code analysis.
-
-- `gulp test --startServers`
-
-    Runs all unit tests and midway tests. Cranks up a second node process to run a server for the midway tests to hit a web api.
-
-- `gulp autotest`
-
-    Runs a watch to run all unit tests.
-
-- `gulp autotest --startServers`
-
-    Runs a watch to run all unit tests and midway tests. Cranks up a second node process to run a server for the midway tests to hit a web api.
+    Runs tests using karma in _watch_ mode
 
 ### Cleaning Up
 

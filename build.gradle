@@ -11,7 +11,7 @@ buildscript {
     classpath "com.bertramlabs.plugins:less-asset-pipeline:2.6.4"
     classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
     classpath "gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.4.1"
-    classpath "gradle.plugin.com.craigburke.gradle:jasmine-gradle:1.2.0"
+    classpath "gradle.plugin.com.craigburke.gradle:karma-gradle:1.2.1"
   }
 }
 
@@ -20,7 +20,7 @@ apply plugin: "idea"
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: "asset-pipeline"
 apply plugin: "com.craigburke.bower-installer"
-apply plugin: "com.craigburke.jasmine"
+apply plugin: "com.craigburke.karma"
 
 repositories {
   jcenter()
@@ -43,10 +43,10 @@ assets {
   excludes = ["**/*.less", "**/*.spec.js"]
 
   minifyOptions = [
-      languageMode: 'ES5',
-      targetLanguage: 'ES5', //Can go from ES6 to ES5 for those bleeding edgers
+      languageMode     : 'ES5',
+      targetLanguage   : 'ES5', //Can go from ES6 to ES5 for those bleeding edgers
       optimizationLevel: 'SIMPLE',
-      angularPass: true // Can use @ngInject annotation for Angular Apps
+      angularPass      : true // Can use @ngInject annotation for Angular Apps
   ]
 }
 
@@ -71,14 +71,33 @@ node {
   version = '4.2.2'
 }
 
-jasmine {
-    basePath = 'src/assets'
-    files = [
-        'bower/bower_components/jquery/jquery.js',
-        'bower/bower_components/angular/angular.js',
-        'bower/bower_components/**/*.js',
-        '**/*.module.js',
-        '**/!(*.spec).js',
-        '**/*.spec.js'
-    ]
+karma {
+  basePath         = '..'
+  browsers         = ['PhantomJS']
+  frameworks       = ['jasmine']
+  reporters        = ['junit', 'progress', 'coverage']
+  colors           = true
+  preprocessors    = [
+      'src/assets/js/app/**/*.js': ['coverage']
+  ]
+  junitReporter    = [outputDir: 'build/test-results']
+  coverageReporter = [
+      dir: 'build/coverage',
+      reporters: [
+          [type: 'html', subdir: 'html'],
+          [type: 'cobertura', subdir: '.'],
+      ]
+  ]
+
+  profile('default') {
+    libraryBases = ['src/assets/bower/bower_components/**/']
+    libraryFiles = ['jquery.js', 'angular.js', '*.js']
+
+    sourceBases  = ['src/assets/js/']
+    sourceFiles  = ['**/*.module.js', '**/!(*.spec).js']
+
+    testBases    = ['src/assets/js/']
+    testFiles    = ['**/*.spec.js']
+  }
+
 }
