@@ -9,7 +9,9 @@ describe('htSidebar directive: ', function () {
 
     beforeEach(module('app.layout'));
 
-    beforeEach(inject(function($compile, $rootScope) {
+    beforeEach(function() {
+        bard.inject('$compile', '$rootScope', '$templateCache');
+        $templateCache.put('app/core/404.html', '<div>404 Not Found</div>');
         // The minimum necessary template HTML for this spec.
         // Simulates a menu link that opens and closes a dropdown of menu items
         // The `when-done-animating` attribute is optional (as is the vm's implementation)
@@ -37,8 +39,8 @@ describe('htSidebar directive: ', function () {
         $compile(el)(scope);
 
         // tell angular to look at the scope values right now
-        //scope.$digest(); //TODO: why do we need digest here ? and why if would fail..
-    }));
+        scope.$digest();
+    });
 
     /// tests ///
     describe('the isOpenClass', function () {
@@ -93,28 +95,29 @@ describe('htSidebar directive: ', function () {
 
         it('click triggers "when-done-animating" expression', function () {
             // spy on directive's callback when the animation is done
-            var spy = sinon.spy();
 
             // Recall the pertinent tag in the template ...
             // '    <div ht-sidebar  when-done-animating="vm.sidebarReady(42)" >
             // therefore, the directive looks for scope.vm.sidebarReady
             // and should call that method with the value '42'
-            scope.vm = {sidebarReady: spy};
+            // scope.vm = {sidebarReady: spy};
+            scope.vm = {sidebarReady: function(){}};
+            spyOn(scope.vm, 'sidebarReady');
+            var theSpy = scope.vm.sidebarReady;
 
             // tell angular to look again for that vm.sidebarReady property
             scope.$digest();
 
             // spy not called until after click which triggers the animation
-            // TODO: find a jasmine to assert it
-            // expect(spy).not.to.have.been.called;
+            expect(theSpy.calls.any()).toEqual(false);
 
             // this click triggers an animation
             clickIt();
 
             // verify that the vm's method (sidebarReady) was called with '42'
             // FYI: spy.args[0] is the array of args passed to sidebarReady()
-            expect(spy).toHaveBeenCalled();
-            expect(spy).toHaveBeenCalledWith(42);
+            expect(theSpy).toHaveBeenCalled();
+            expect(theSpy).toHaveBeenCalledWith(42);
         });
     });
 

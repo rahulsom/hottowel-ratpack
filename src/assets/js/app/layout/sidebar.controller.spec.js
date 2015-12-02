@@ -12,6 +12,7 @@ describe('layout', function() {
             bard.inject('$controller', '$httpBackend', '$location',
                           '$rootScope', '$state', 'routerHelper', '$templateCache');
             $templateCache.put('app/dashboard/dashboard.html', '<div>dashboard</div>');
+            $templateCache.put('app/core/404.html', '<div>404 Not Found</div>');
         });
 
         beforeEach(function() {
