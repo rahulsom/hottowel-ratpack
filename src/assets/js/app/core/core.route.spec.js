@@ -8,6 +8,7 @@ describe('core', function() {
         beforeEach(function() {
             module('app.core', bard.fakeToastr);
             bard.inject('$location', '$rootScope', '$state', '$templateCache');
+            $templateCache.put('app/core/404.html', '<div>404</div>');
             $templateCache.put(views.core, '');
         });
 
