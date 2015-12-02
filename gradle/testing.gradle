@@ -1,0 +1,30 @@
+karma {
+  basePath         = '..'
+  browsers         = ['PhantomJS']
+  frameworks       = ['jasmine']
+  reporters        = ['junit', 'progress', 'coverage']
+  colors           = true
+  preprocessors    = [
+      'src/assets/js/app/**/*.js': ['coverage']
+  ]
+  junitReporter    = [outputDir: 'build/test-results']
+  coverageReporter = [
+      dir: 'build/coverage',
+      reporters: [
+          [type: 'html', subdir: 'html'],
+          [type: 'cobertura', subdir: '.'],
+      ]
+  ]
+
+  profile('default') {
+    libraryBases = ['src/assets/bower/bower_components/**/']
+    libraryFiles = ['jquery.js', 'angular.js', '*.js']
+
+    sourceBases  = ['src/assets/js/']
+    sourceFiles  = ['**/*.module.js', '**/!(*.spec).js']
+
+    testBases    = ['src/assets/js/']
+    testFiles    = ['**/*.spec.js']
+  }
+
+}

@@ -2,102 +2,42 @@ buildscript {
   repositories {
     jcenter()
     maven {
-      url "https://plugins.gradle.org/m2/"
+      url 'https://plugins.gradle.org/m2/'
     }
   }
   dependencies {
-    classpath "io.ratpack:ratpack-gradle:1.1.1"
-    classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.6.4"
-    classpath "com.bertramlabs.plugins:less-asset-pipeline:2.6.4"
+    classpath 'io.ratpack:ratpack-gradle:1.1.1'
+    classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.6.4'
+    classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
     classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
-    classpath "gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.4.1"
-    classpath "gradle.plugin.com.craigburke.gradle:karma-gradle:1.2.1"
+    classpath 'gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.4.1'
+    classpath 'gradle.plugin.com.craigburke.gradle:karma-gradle:1.2.1'
   }
 }
 
-apply plugin: "io.ratpack.ratpack-groovy"
-apply plugin: "idea"
+apply plugin: 'io.ratpack.ratpack-groovy'
+apply plugin: 'idea'
 apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: "asset-pipeline"
-apply plugin: "com.craigburke.bower-installer"
-apply plugin: "com.craigburke.karma"
+apply plugin: 'asset-pipeline'
+apply plugin: 'com.craigburke.bower-installer'
+apply plugin: 'com.craigburke.karma'
+apply from: 'gradle/bower.gradle'
+apply from: 'gradle/testing.gradle'
 
 repositories {
   jcenter()
 }
 
 dependencies {
-  runtime "org.slf4j:slf4j-simple:1.7.12"
-  compile ratpack.dependency("guice")
-  compile "com.bertramlabs.plugins:ratpack-asset-pipeline:2.6.4"
-  compile "com.bertramlabs.plugins:less-asset-pipeline:2.6.4"
+  runtime 'org.slf4j:slf4j-simple:1.7.12'
+  compile ratpack.dependency('guice')
+  compile 'com.bertramlabs.plugins:ratpack-asset-pipeline:2.6.4'
+  compile 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
   assets 'com.craigburke.angular:angular-annotate-asset-pipeline:2.4.0'
-}
-
-assets {
-  minifyJs = true
-  minifyCss = true
-
-  enableSourceMaps = true
-  includes = ["styles.less"]
-  excludes = ["**/*.less", "**/*.spec.js"]
-
-  minifyOptions = [
-      languageMode     : 'ES5',
-      targetLanguage   : 'ES5', //Can go from ES6 to ES5 for those bleeding edgers
-      optimizationLevel: 'SIMPLE',
-      angularPass      : true // Can use @ngInject annotation for Angular Apps
-  ]
-}
-
-bower {
-  installBase = 'src/assets/bower/bower_components'
-
-  'angular'('^1.4.5')
-  'angular-animate'('^1.4.5')
-  'angular-sanitize'('^1.4.5')
-  'angular-ui-router'('^0.2.15')
-  'angular-mocks'('^1.4.5')
-  'bardjs'('^0.1.4')
-  'bootstrap'('^3.3.5') { source 'less/**/*.less'; source 'js/**/bootstrap.js' }
-  'extras.angular.plus'('^0.9.2')
-  'font-awesome'('^4.3.0')
-  'jquery'('^2.1.4')
-  'moment'('^2.10.3')
-  'toastr'('^2.1.1')
 }
 
 node {
   version = '4.2.2'
 }
 
-karma {
-  basePath         = '..'
-  browsers         = ['PhantomJS']
-  frameworks       = ['jasmine']
-  reporters        = ['junit', 'progress', 'coverage']
-  colors           = true
-  preprocessors    = [
-      'src/assets/js/app/**/*.js': ['coverage']
-  ]
-  junitReporter    = [outputDir: 'build/test-results']
-  coverageReporter = [
-      dir: 'build/coverage',
-      reporters: [
-          [type: 'html', subdir: 'html'],
-          [type: 'cobertura', subdir: '.'],
-      ]
-  ]
 
-  profile('default') {
-    libraryBases = ['src/assets/bower/bower_components/**/']
-    libraryFiles = ['jquery.js', 'angular.js', '*.js']
-
-    sourceBases  = ['src/assets/js/']
-    sourceFiles  = ['**/*.module.js', '**/!(*.spec).js']
-
-    testBases    = ['src/assets/js/']
-    testFiles    = ['**/*.spec.js']
-  }
-
-}
