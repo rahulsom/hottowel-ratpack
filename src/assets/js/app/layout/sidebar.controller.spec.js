@@ -10,7 +10,8 @@ describe('layout', function() {
         beforeEach(function() {
             module('app.layout', bard.fakeToastr);
             bard.inject('$controller', '$httpBackend', '$location',
-                          '$rootScope', '$state', 'routerHelper');
+                          '$rootScope', '$state', 'routerHelper', '$templateCache');
+            $templateCache.put('app/dashboard/dashboard.html', '<div>dashboard</div>');
         });
 
         beforeEach(function() {
