@@ -120,7 +120,7 @@ The `blocks.router` module contains a routing helper module that assists in addi
 
     Performs code analysis using plato on all javascript files. Plato generates a report in the reports folder.
 
-### Testing (TODO)
+### Testing
 
 - `./gradlew karmaRun`
 
