@@ -15,11 +15,11 @@ describe('dashboard routes', function () {
         bard.verifyNoOutstandingHttpRequests();
 
         it('should map state dashboard to url / ', function() {
-            expect($state.href('dashboard', {})).to.equal('/');
+            expect($state.href('dashboard', {})).toEqual('/');
         });
 
         it('should map /dashboard route to dashboard View template', function () {
-            expect($state.get('dashboard').templateUrl).to.equal(view);
+            expect($state.get('dashboard').templateUrl).toEqual(view);
         });
 
         it('of dashboard should work with $state.go', function () {

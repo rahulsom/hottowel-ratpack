@@ -8,11 +8,12 @@ describe('core', function() {
         beforeEach(function() {
             module('app.core', bard.fakeToastr);
             bard.inject('$location', '$rootScope', '$state', '$templateCache');
+            $templateCache.put('app/core/404.html', '<div>404</div>');
             $templateCache.put(views.core, '');
         });
 
         it('should map /404 route to 404 View template', function() {
-            expect($state.get('404').templateUrl).to.equal(views.four0four);
+            expect($state.get('404').templateUrl).toEqual(views.four0four);
         });
 
         it('of dashboard should work with $state.go', function() {
@@ -24,7 +25,7 @@ describe('core', function() {
         it('should route /invalid to the otherwise (404) route', function() {
             $location.path('/invalid');
             $rootScope.$apply();
-            expect($state.current.templateUrl).to.equal(views.four0four);
+            expect($state.current.templateUrl).toEqual(views.four0four);
         });
     });
 });

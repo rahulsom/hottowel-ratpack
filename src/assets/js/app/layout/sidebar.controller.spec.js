@@ -10,7 +10,9 @@ describe('layout', function() {
         beforeEach(function() {
             module('app.layout', bard.fakeToastr);
             bard.inject('$controller', '$httpBackend', '$location',
-                          '$rootScope', '$state', 'routerHelper');
+                          '$rootScope', '$state', 'routerHelper', '$templateCache');
+            $templateCache.put('app/dashboard/dashboard.html', '<div>dashboard</div>');
+            $templateCache.put('app/core/404.html', '<div>404 Not Found</div>');
         });
 
         beforeEach(function() {
@@ -23,17 +25,17 @@ describe('layout', function() {
 
         it('should have isCurrent() for / to return `current`', function() {
             $location.path('/');
-            expect(controller.isCurrent($state.current)).to.equal('current');
+            expect(controller.isCurrent($state.current)).toEqual('current');
         });
 
         it('should have isCurrent() for /customers to return `current`', function() {
             $location.path('/customers');
-            expect(controller.isCurrent($state.current)).to.equal('current');
+            expect(controller.isCurrent($state.current)).toEqual('current');
         });
 
         it('should have isCurrent() for non route not return `current`', function() {
             $location.path('/invalid');
-            expect(controller.isCurrent({title: 'invalid'})).not.to.equal('current');
+            expect(controller.isCurrent({title: 'invalid'})).not.toEqual('current');
         });
     });
 });
