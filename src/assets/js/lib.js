@@ -6,3 +6,4 @@
 //= require /bower_components/angular-ui-router/angular-ui-router
 //= require /bower_components/toastr/toastr
 //= require /bower_components/angular-animate/angular-animate
+//= require /bower_components/angular-bootstrap/ui-bootstrap-tpls

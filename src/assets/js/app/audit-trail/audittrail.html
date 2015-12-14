@@ -1,0 +1,123 @@
+<section class="mainbar" style="background-color: lightgray;">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="jumbotron" style="margin-top: 20px;">
+                        <form>
+                            <uib-accordion>
+                                <uib-accordion-group is-open="vm.searchOpen">
+                                    <uib-accordion-heading>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h2>
+                                                        <span class="glyphicon glyphicon-search"
+                                                              style="color: mediumseagreen;"></span> Audit Search
+                                                    <span ng-class="{'glyphicon-chevron-right':!vm.searchOpen, 'glyphicon-chevron-down':vm.searchOpen}"
+                                                          class="glyphicon pull-right"></span></h2>
+                                            </div>
+                                        </div>
+                                    </uib-accordion-heading>
+
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <div class="form-group">
+                                                <label>Event Type</label>
+
+                                                <div>All Selected</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <div class="form-group">
+                                                <label>Message Type</label>
+
+                                                <div>Filters</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <div class="form-group">
+                                                <label></label>
+                                                <input type="text" class="form-control" placeholder="Source Facility"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <div class="form-group">
+                                                <label></label>
+                                                <input type="text" class="form-control" placeholder="Control ID"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <div class="form-group">
+                                                <label></label>
+                                                <input type="text" class="form-control" placeholder="User ID"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label></label>
+                                            <input type="text" class="form-control" placeholder="Patient Name"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label></label>
+                                            <input type="text" class="form-control" placeholder="Patient ID"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label></label>
+                                            <input type="text" class="form-control" placeholder="Patient Type"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label></label>
+                                            <input type="text" class="form-control" placeholder="Physician ID"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label></label>
+                                            <input type="text" class="form-control" placeholder="Physician Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-right:20px; float:right">
+                                        <span style="float: right"></span>
+                                        <button class="btn btn-success">search</button>
+                                    </div>
+                                    <div>
+                                        <span style="float:right">
+                                            <button class="btn btn-block">clear</button>
+                                        </span>
+                                    </div>
+                                    </div>
+
+                                </uib-accordion-group>
+                            </uib-accordion>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="jumbotron" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h2>Audit Results</h2>
+                    </div>
+                    <div class="col-xs-3">
+                        Displaying 0 Audit Records
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Search for Audit Records
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
