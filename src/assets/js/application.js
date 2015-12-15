@@ -25,3 +25,6 @@
 //= require /app/layout/sidebar.controller
 //= require /app/widgets/ht-img-person.directive
 //= require /app/widgets/ht-widget-header.directive
+//= require /app/audit-trail/audittrail.module
+//= require /app/audit-trail/audittrail.controller
+//= require /app/audit-trail/audittrail.route
