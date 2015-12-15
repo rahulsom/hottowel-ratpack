@@ -1,11 +1,10 @@
-import asset.pipeline.AssetPipeline
 import asset.pipeline.ratpack.AssetPipelineHandler
 import asset.pipeline.ratpack.AssetPipelineModule
-import static ratpack.jackson.Jackson.json
 import ratpack.hottowel.MockData
-import ratpack.exec.Blocking
+import ratpack.path.internal.RootPathBinding
 
 import static ratpack.groovy.Groovy.ratpack
+import static ratpack.jackson.Jackson.json
 
 ratpack {
   bindings {
@@ -19,12 +18,8 @@ ratpack {
       render(json(MockData.people))
     }
     all (new AssetPipelineHandler())
-    all {
-      Blocking.get {
-        AssetPipeline.serveAsset("index.html")
-      } then {
-        response.send ('text/html', it)
-      }
+    all { ctx ->
+      ctx.insert(single(new RootPathBinding("index.html")),new AssetPipelineHandler())
     }
   }
 }
