@@ -17,14 +17,13 @@
     "plusplus": false,
     "quotmark": "single",
     "undef": true,
-    "unused": false,
-    "strict": false,
+    "unused": true,
+    "strict": true,
     "maxparams": 10,
     "maxdepth": 5,
     "maxstatements": 40,
     "maxcomplexity": 8,
     "maxlen": 120,
-
     "asi": false,
     "boss": false,
     "debug": false,
@@ -35,6 +34,7 @@
     "funcscope": false,
     "globalstrict": false,
     "iterator": false,
+    "jasmine": true,
     "lastsemic": false,
     "laxbreak": false,
     "laxcomma": false,
@@ -50,11 +50,10 @@
     "supernew": false,
     "validthis": false,
     "noyield": false,
-
     "browser": true,
     "node": true,
-
     "globals": {
-        "angular": false
+        "angular": false,
+        "_": true
     }
 }
