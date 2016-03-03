@@ -5,6 +5,7 @@ karma {
   reporters        = ['junit', 'progress', 'coverage']
   colors           = true
   preprocessors    = [
+      'src/assets/js/app/**/*.html': ['ng-html2js'],
       'src/assets/js/app/**/*.js': ['coverage']
   ]
   junitReporter    = [outputDir: 'build/test-results']
@@ -15,13 +16,19 @@ karma {
           [type: 'cobertura', subdir: '.'],
       ]
   ]
+  ngHtml2JsPreprocessor = [
+      stripPrefix: 'src/assets/js/'
+
+  ]
+  dependencies(['karma-ng-html2js-preprocessor'])
+
 
   profile('default') {
     libraryBases = ['src/assets/bower/bower_components/**/']
     libraryFiles = ['jquery.js', 'angular.js', '*.js']
 
     sourceBases  = ['src/assets/js/']
-    sourceFiles  = ['**/*.module.js', '**/!(*.spec).js']
+    sourceFiles = ['**/*.module.js', '**/!(*.spec).js', '**/*.html']
 
     testBases    = ['src/assets/js/']
     testFiles    = ['**/*.spec.js']

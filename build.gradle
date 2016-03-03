@@ -6,23 +6,24 @@ buildscript {
     }
   }
   dependencies {
-    classpath 'io.ratpack:ratpack-gradle:1.1.1'
-    classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.6.4'
     classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
-    classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
-    classpath 'gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.4.1'
-    classpath 'gradle.plugin.com.craigburke.gradle:karma-gradle:1.2.1'
   }
 }
 
-apply plugin: 'io.ratpack.ratpack-groovy'
+plugins {
+  id "com.craigburke.karma" version "1.4.3"
+  id "com.craigburke.bower-installer" version "2.5.1"
+  id "com.bertramlabs.asset-pipeline" version "2.6.9"
+  id "io.ratpack.ratpack-groovy" version "1.2.0"
+  id "com.github.johnrengelman.shadow" version "1.2.3"
+  id "com.github.rahulsom.linters" version "0.1"
+}
+
+apply plugin: 'maven'
 apply plugin: 'idea'
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'asset-pipeline'
-apply plugin: 'com.craigburke.bower-installer'
-apply plugin: 'com.craigburke.karma'
 apply from: 'gradle/bower.gradle'
 apply from: 'gradle/testing.gradle'
+apply from: 'gradle/linter.gradle'
 
 repositories {
   jcenter()
@@ -40,4 +41,24 @@ node {
   version = '4.2.2'
 }
 
+def buildNumber = System.getenv("BUILD_NUMBER") ?: "unknown"
 
+shadowJar {
+  baseName = 'htrp'
+  classifier = ''
+}
+
+uploadShadow {
+  repositories {
+    mavenDeployer {
+      repository(url: "http://my.repo.host/my/repo/path") {
+        authentication(userName: "username", password: "password")
+      }
+      pom.version = "1.$buildNumber"
+      pom.artifactId = "htrp"
+      pom.groupId = "com.acme"
+    }
+  }
+}
+
+check.dependsOn 'karmaRun'

@@ -1,0 +1,8 @@
+linters {
+  format = System.getenv('BUILD_NUMBER') ? 'checkstyle' : 'text'
+
+  jscs = true
+  jshint = true
+  htmlcs = true
+  stylelint = true
+}
