@@ -1,0 +1,8 @@
+sudo: false
+language: groovy
+script: ./gradlew clean bowerClean bowerInstall karmaClean check
+cache:
+  directories:
+  - "$HOME/.m2"
+  - "$HOME/.gradle"
+  - "node_modules"
