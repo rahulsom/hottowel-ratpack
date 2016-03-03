@@ -101,7 +101,7 @@ describe('htSidebar directive: ', function () {
             // therefore, the directive looks for scope.vm.sidebarReady
             // and should call that method with the value '42'
             // scope.vm = {sidebarReady: spy};
-            scope.vm = {sidebarReady: function(){}};
+            scope.vm = {sidebarReady: function() {}};
             spyOn(scope.vm, 'sidebarReady');
             var theSpy = scope.vm.sidebarReady;
 
