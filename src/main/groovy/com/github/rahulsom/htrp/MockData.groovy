@@ -1,4 +1,4 @@
-package ratpack.hottowel
+package com.github.rahulsom.htrp
 /**
  * Created by rahul on 11/25/15.
  */

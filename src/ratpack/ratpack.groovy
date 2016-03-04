@@ -1,6 +1,6 @@
 import asset.pipeline.ratpack.AssetPipelineHandler
 import asset.pipeline.ratpack.AssetPipelineModule
-import ratpack.hottowel.MockData
+import com.github.rahulsom.htrp.MockData
 import ratpack.path.internal.RootPathBinding
 
 import static ratpack.groovy.Groovy.ratpack
