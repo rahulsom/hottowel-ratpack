@@ -1,22 +1,22 @@
 buildscript {
-  repositories {
-    jcenter()
-    maven {
-      url 'https://plugins.gradle.org/m2/'
+    repositories {
+        jcenter()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
     }
-  }
-  dependencies {
-    classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
-  }
+    dependencies {
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
+    }
 }
 
 plugins {
-  id "com.craigburke.karma" version "1.4.3"
-  id "com.craigburke.bower-installer" version "2.5.1"
-  id "com.bertramlabs.asset-pipeline" version "2.6.9"
-  id "io.ratpack.ratpack-groovy" version "1.2.0"
-  id "com.github.johnrengelman.shadow" version "1.2.3"
-  id "com.github.rahulsom.linters" version "0.1"
+    id "com.craigburke.karma" version "1.4.3"
+    id "com.craigburke.bower-installer" version "2.5.1"
+    id "com.bertramlabs.asset-pipeline" version "2.6.9"
+    id "io.ratpack.ratpack-groovy" version "1.2.0"
+    id "com.github.johnrengelman.shadow" version "1.2.3"
+    id "com.github.rahulsom.linters" version "0.1"
 }
 
 apply plugin: 'maven'
@@ -26,39 +26,40 @@ apply from: 'gradle/testing.gradle'
 apply from: 'gradle/linter.gradle'
 
 repositories {
-  jcenter()
+    jcenter()
 }
 
 dependencies {
-  runtime 'org.slf4j:slf4j-simple:1.7.12'
-  compile ratpack.dependency('guice')
-  compile 'com.bertramlabs.plugins:ratpack-asset-pipeline:2.6.4'
-  compile 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
-  assets 'com.craigburke.angular:angular-annotate-asset-pipeline:2.4.0'
+    runtime 'org.slf4j:slf4j-simple:1.7.12'
+    compile ratpack.dependency('guice')
+    compile 'com.bertramlabs.plugins:ratpack-asset-pipeline:2.6.4'
+    compile 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
+    assets 'com.craigburke.angular:angular-annotate-asset-pipeline:2.4.0'
+    assets "com.craigburke.angular:angular-template-asset-pipeline:2.2.7"
 }
 
 node {
-  version = '4.2.2'
+    version = '4.2.2'
 }
 
 def buildNumber = System.getenv("BUILD_NUMBER") ?: "unknown"
 
 shadowJar {
-  baseName = 'htrp'
-  classifier = ''
+    baseName = 'htrp'
+    classifier = ''
 }
 
 uploadShadow {
-  repositories {
-    mavenDeployer {
-      repository(url: "http://my.repo.host/my/repo/path") {
-        authentication(userName: "username", password: "password")
-      }
-      pom.version = "1.$buildNumber"
-      pom.artifactId = "htrp"
-      pom.groupId = "com.acme"
+    repositories {
+        mavenDeployer {
+            repository(url: "http://my.repo.host/my/repo/path") {
+                authentication(userName: "username", password: "password")
+            }
+            pom.version = "1.$buildNumber"
+            pom.artifactId = "htrp"
+            pom.groupId = "com.acme"
+        }
     }
-  }
 }
 
 check.dependsOn 'karmaRun'

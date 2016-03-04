@@ -25,3 +25,8 @@
 //= require /app/layout/sidebar.controller
 //= require /app/widgets/ht-img-person.directive
 //= require /app/widgets/ht-widget-header.directive
+//= require_tree /app/admin/templates
+//= require_tree /app/core/templates
+//= require_tree /app/dashboard/templates
+//= require_tree /app/layout/templates
+//= require_tree /app/widgets/templates
