@@ -3,8 +3,8 @@ assets {
   minifyCss = true
 
   enableSourceMaps = true
-  includes = ["styles.less"]
-  excludes = ["**/*.less", "**/*.spec.js"]
+  includes = ["styles.less", "lib.js", "application.js"]
+  excludes = ["**/*.less", "**/*.js", "**/*.html"]
 
   minifyOptions = [
       languageMode     : 'ES5',
