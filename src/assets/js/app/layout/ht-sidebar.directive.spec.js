@@ -11,7 +11,7 @@ describe('htSidebar directive: ', function () {
 
     beforeEach(function() {
         bard.inject('$compile', '$rootScope', '$templateCache');
-        $templateCache.put('app/core/404.html', '<div>404 Not Found</div>');
+        $templateCache.put('/app/core/404.html', '<div>404 Not Found</div>');
         // The minimum necessary template HTML for this spec.
         // Simulates a menu link that opens and closes a dropdown of menu items
         // The `when-done-animating` attribute is optional (as is the vm's implementation)

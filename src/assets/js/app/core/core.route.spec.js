@@ -2,13 +2,13 @@
 describe('core', function() {
     describe('state', function() {
         var views = {
-            four0four: 'app/core/404.html'
+            four0four: '/app/core/404.html'
         };
 
         beforeEach(function() {
             module('app.core', bard.fakeToastr);
             bard.inject('$location', '$rootScope', '$state', '$templateCache');
-            $templateCache.put('app/core/404.html', '<div>404</div>');
+            $templateCache.put('/app/core/404.html', '<div>404</div>');
             $templateCache.put(views.core, '');
         });
 

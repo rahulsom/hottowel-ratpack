@@ -3,16 +3,16 @@ describe('layout', function() {
     describe('sidebar', function() {
         var controller;
         var views = {
-            dashboard: 'app/dashboard/dashboard.html',
-            customers: 'app/customers/customers.html'
+            dashboard: '/app/dashboard/dashboard.html',
+            customers: '/app/customers/customers.html'
         };
 
         beforeEach(function() {
             module('app.layout', bard.fakeToastr);
             bard.inject('$controller', '$httpBackend', '$location',
                           '$rootScope', '$state', 'routerHelper', '$templateCache');
-            $templateCache.put('app/dashboard/dashboard.html', '<div>dashboard</div>');
-            $templateCache.put('app/core/404.html', '<div>404 Not Found</div>');
+            $templateCache.put('/app/dashboard/dashboard.html', '<div>dashboard</div>');
+            $templateCache.put('/app/core/404.html', '<div>404 Not Found</div>');
         });
 
         beforeEach(function() {
