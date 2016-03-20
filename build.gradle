@@ -27,13 +27,18 @@ apply from: 'gradle/linter.gradle'
 
 repositories {
     jcenter()
+    maven { url 'https://plugins.gradle.org/m2/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
     runtime 'org.slf4j:slf4j-simple:1.7.12'
+
     compile ratpack.dependency('guice')
     compile 'com.bertramlabs.plugins:ratpack-asset-pipeline:2.6.4'
     compile 'com.bertramlabs.plugins:less-asset-pipeline:2.6.4'
+    compile 'com.github.rahulsom:rp-config:0.1-SNAPSHOT'
+
     assets 'com.craigburke.angular:angular-annotate-asset-pipeline:2.4.0'
     assets "com.craigburke.angular:angular-template-asset-pipeline:2.2.7"
 }
