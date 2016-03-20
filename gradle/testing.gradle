@@ -20,8 +20,10 @@ karma {
       stripPrefix: 'src/assets/js/'
 
   ]
-  dependencies(['karma-ng-html2js-preprocessor'])
-
+  dependencies([
+          'karma-ng-html2js-preprocessor@0.2.1',
+          'karma-junit-reporter@0.3.8'
+  ])
 
   profile('default') {
     libraryBases = ['src/assets/bower/bower_components/**/']
