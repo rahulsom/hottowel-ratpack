@@ -6,3 +6,5 @@ cache:
   - "$HOME/.m2"
   - "$HOME/.gradle"
   - "node_modules"
+addons:
+  srcclr: true
